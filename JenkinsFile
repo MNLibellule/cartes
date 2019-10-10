@@ -1,50 +1,45 @@
 pipeline {
     agent any
 
-    stages{
+    stages {
         stage('build'){
             steps{
                 bat "mvn clean compile"
             }
             post{
-            	always {
-            		echo "build stage finished!"
-            	{
-            }
-            changed {
-            	echo "Du changement en build"
-            }
-            failed {
-            	echo "Pas bon le build"
-            }
-            success {
-            	echo "1 gommette pour le build"
-            }
-        }
-        stage('test'){
-        	steps{
-        		bat "mvn test"
-        	}
-        }
-        post{
-            	always {
-            		echo "pipeline finished!"
-            	{
-            }
-            changed {
-            	echo "Du changement en pipeline"
-            }
-            failed {
-            	echo "Pas bon le pipeline"
-            }
-            success {
-            	echo "1 gommette pour le pipeline"
+                always  {
+                    echo "build stage finished!"
+                }
+                changed {
+                    echo "du changement en build"
+                }
+                failure {
+                    echo "pas bon le build"
+                }
+                success {
+                    echo "1 gommette pour le build"
+                }
             }
         }
-        stage('test'){
-        	steps{
-        		bat "mvn test"
-        	}
+
+        stage('tests'){
+            steps{
+                bat "mvn test"
+            }
         }
     }
+    post{
+                always  {
+                    echo "pipeline finished!"
+                }
+                changed {
+                    echo "du changement dans le pipeline"
+                }
+                failure {
+                    echo "pas bon le pipeline"
+                }
+                success {
+                    echo "1 super gommette pour la pipeline"
+                }
+            }
 }
