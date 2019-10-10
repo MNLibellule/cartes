@@ -22,12 +22,22 @@ pipeline {
             }
         }
 
-        stage('tests'){
+        stage('test'){
             steps{
                 bat "mvn test"
             }
         }
-    }
+        stage('package'){
+            steps{
+                bat "mvn -DskipTests package"
+            }
+        }
+        stage('deliver'){
+            steps{
+                echo "TODO : deliver"
+            }
+        }
+        
     post{
                 always  {
                     echo "pipeline finished!"
