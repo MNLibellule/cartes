@@ -18,7 +18,7 @@ class TestCarte {
 		Valeur valeur = Valeur.DAME;
 		// when
 		Carte carte = new Carte(valeur, signe);
-		//then
+		// then
 		assertAll(
 			()->assertEquals(signe, carte.getSigne()),
 			()->assertEquals(valeur, carte.getValeur()),
@@ -30,7 +30,7 @@ class TestCarte {
 	void testEqualsNull() {
 		// given
 		Carte c = new Carte(Valeur.DAME, Signe.COEUR);
-		//when
+		// when
 		boolean res = c.equals(null);
 		// then
 		assertFalse(res);
@@ -41,16 +41,10 @@ class TestCarte {
 		// given
 		Carte c1 = new Carte(Valeur.DAME, Signe.COEUR);
 		Carte c2 = new Carte(Valeur.DAME, Signe.COEUR);
-		//when
+		// when
 		boolean res = c1.equals(c2);
 		// then
 		assertTrue(res);
 	}
-	
-	
-	
+
 }
-
-
-
-
